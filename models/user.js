@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
-import bcrypt from 'bcrypt';
-
+import bcrypt from "bcrypt";
 
 import jwt from "jsonwebtoken";
 
@@ -62,5 +61,4 @@ userSchema.methods.getJwtToken = function () {
   });
 };
 
-export const User = mongoose.model("User", userSchema)
-
+export const User = mongoose.model("User", userSchema);
