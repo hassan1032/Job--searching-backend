@@ -105,7 +105,7 @@ export const updateJob = catchAsyncError(async (req, res, next) => {
   }
   jobs = await job.findByIdAndUpdate(id, req.body, {
     new: true,
-    runValidators: true,
+     runValidators: true,
     useFindAndModify: false,
   });
   res.status(200).json({
@@ -114,4 +114,26 @@ export const updateJob = catchAsyncError(async (req, res, next) => {
     jobs,
   });
 });
+
+
+export const deletejob = catchAsyncError(async(req,res,next)=>{
+  const { role } = req.user;
+  if (role === "Job Seeker") {
+    return next(
+      new ErrorHandler("Job Seeker not allowed to access this resource.", 400)
+
+    )
+  }
+  const { id } = req.params;
+  let jobs = await job.findById(id);
+  if (!jobs) {
+    return next(new ErrorHandler("OOPS! Job not found.", 404));
+    }
+    jobs = await job.findByIdAndDelete(id);
+    res.status(200).json({
+      success: true,
+      message: "Job Deleted Successfully!",
+      jobs,
+    })
+})
 
