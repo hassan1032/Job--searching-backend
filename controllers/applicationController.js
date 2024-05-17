@@ -16,7 +16,8 @@ export const postApplication = catchAsyncError(async (req, res, next) => {
     }
   
     const { resume } = req.files;
-    const allowedFormats = ["image/png", "image/jpeg", "image/webp"];
+    const allowedFormats = ["image/png", "image/jpeg", "image/webp", "application/pdf"];
+
     if (!allowedFormats.includes(resume.mimetype)) {
       return next(
         new ErrorHandler("Invalid file type. Please upload a PNG file.", 400)
@@ -47,7 +48,7 @@ export const postApplication = catchAsyncError(async (req, res, next) => {
     }
   
     const employerID = {
-      user: jobDetails.postedBy,
+      user: jobDetails.jobPostedby,
       role: "Employer",
     };
     if (
