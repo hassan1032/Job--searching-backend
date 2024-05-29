@@ -20,11 +20,11 @@ export const postApplication = catchAsyncError(async (req, res, next) => {
 
     if (!allowedFormats.includes(resume.mimetype)) {
       return next(
-        new ErrorHandler("Invalid file type. Please upload a PNG file.", 400)
+        new ErrorHandler("Invalid file type. Please ad a PNG file.", 400)
       );
     }
    
-    const cloudinaryResponse = await cloudinary.v2.uploader.upload(
+    const cloudinaryResponse = await cloudinary.v2.ader.ad(
       resume.tempFilePath,
       { folder: "Job-Application" },
      
@@ -35,7 +35,7 @@ export const postApplication = catchAsyncError(async (req, res, next) => {
         "Cloudinary Error:",
         cloudinaryResponse.error || "Unknown Cloudinary error"
       );
-      return next(new ErrorHandler("Failed to upload Resume to Cloudinary", 500));
+      return next(new ErrorHandler("Failed to ad Resume to Cloudinary", 500));
     }
     const { name, email, coverLetter, phone, address, jobId } = req.body;
     const applicantID = {

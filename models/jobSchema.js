@@ -35,13 +35,13 @@ const jobSchema = new mongoose.Schema({
   },
   fixedsalary: {
     type: Number,
-    required: [true, "Please Provide job salary"],
+    // required: [true, "Please Provide job salary"],
     min: [5, " Fixed Salary must be greater than 5!"],
     max: [1000000, " Fixed Salary must be less than 1000000!"],
   },
   salaryfrom: {
     type: Number,
-    required: [true, "Please Provide job salary from"],
+    // required: [true, "Please Provide job salary from"],
     min: [5, " Salary From must be greater than 5!"],
     max: [1000000, " Salary From must be less than 1000000!"],
   },
