@@ -48,8 +48,6 @@ const jobSchema = new mongoose.Schema({
   company: {
     type: String,
     required: [true, "Please provide company."],
-    minLength: [4, "Salary must contain at least 4 digits"],
-    maxLength: [9, "Salary cannot exceed 9 digits"],
   },
   expired: {
     type: Boolean,
