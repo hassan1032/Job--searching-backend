@@ -15,11 +15,7 @@ const app = express();
 // dotenv.config({path: './config/config.env'})
 config({ path: "./config/config.env" });
 app.use(
-  cors({
-    origin: "*",
-    methods: ["GET ", "POST", "DELETE", "PUT"],
-    credentials: true,
-  })
+  cors('*')
 );
 app.use(cookieParser());
 app.use(express.json());
