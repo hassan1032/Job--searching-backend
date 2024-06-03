@@ -14,16 +14,16 @@ import {errorMiddleware} from './middlewares/error.js'
 const app = express();
 // dotenv.config({path: './config/config.env'})
 config({ path: "./config/config.env" });
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      process.env.FRONTEND_URL
-    ],
-    methods: ["GET ", "POST", "DELETE", "PUT"],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL
+  ],
+  methods: ["GET", "POST", "DELETE", "PUT"],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
