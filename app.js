@@ -8,6 +8,21 @@ import applicationRouter from './routes/applicationRouter.js';
 import jobRouter from './routes/jobRouter.js';
 import userRouter from './routes/userRouter.js';
 import { errorMiddleware } from './middlewares/error.js';
+import { config } from 'dotenv';
+import cors from 'cors';
+
+
+config({ path: "./config/config.env" });
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL
+  ],
+  methods: ["GET", "POST", "DELETE", "PUT"],
+  credentials: true
+};
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -37,6 +52,7 @@ app.use(fileUpload({ useTempFiles: true, tempFileDir: tempDir }));
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/application', applicationRouter);
 app.use('/api/v1/job', jobRouter);
+app.use(cors(corsOptions));
 
 app.use(errorMiddleware);
 
